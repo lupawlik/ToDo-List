@@ -40,7 +40,7 @@
                                 <div class="col-sm-10">
 
                                     <h1><b>Lista zadań</b></h1>
-                                    <h4><b>Suma zadań dla tego pracownika: {{tasks|length}}</b></h4>
+                                    <h4><b>Suma zadań dla tego pracownika: <span id="number_of_tasks">{{tasks|length}}</span></b></h4>
                                     {% if tasks|length > 0 %}
                                             <form action="/export_csv/{{employee.id}}/">
                                                 <button type="submit" class="btn btn-success btn-m active" aria-pressed="true">Exportuj CSV</button>
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form id="test">
+                        <form id="task_form">
                             {% csrf_token %}
                             <table class="table table-striped table-hover table-bordered" id="tableEmp">
                                 <thead>
@@ -98,6 +98,7 @@
                       $('#tableEmp').DataTable({
                             "paging": false,
                             "bInfo" : false,
+                            "bFilter": false,
                              columnDefs: [{
                                 orderable: false,
                                 targets: [0, 1, 2, 5]
@@ -139,12 +140,12 @@ $('#sortTable').DataTable();
 </script>
 
 
-<p id="test1"></p>
-<p id="test2"></p>
 <script>
-    $(document).on('submit', '#test', function(e){
+    $(document).on('submit', '#task_form', function(e){
         e.preventDefault();
         var task_id = document.activeElement.value;
+        var number_of_tasks = parseInt(document.getElementById('number_of_tasks').textContent);
+
         if (document.activeElement.name == "change"){
             var status_value = document.getElementById('statusValue'+task_id).value;
 
@@ -178,6 +179,7 @@ $('#sortTable').DataTable();
                 },
                 success: function(data){
                     $('#trTask'+task_id).remove();
+                    $('#number_of_tasks').text(number_of_tasks-1);
                 }
             });
         }
