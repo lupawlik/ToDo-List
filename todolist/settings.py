@@ -111,6 +111,9 @@ REST_FRAMEWORK = {
     ],
 }
 
+SWAGGER_SETTINGS = {
+   'USE_SESSION_AUTH': False
+}
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
