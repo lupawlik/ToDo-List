@@ -17,3 +17,6 @@
 
 - Jeżeli po wejściu w /api nie wyświetla się strona dokumentacji, należy wyłączyć server użyć`python manage.py collectstatic` oraz ponownie uruchomić
 
+### Uruchamianie przy pomocy dockera
+- docker-compose build
+- docker-compose up -d
