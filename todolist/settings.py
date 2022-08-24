@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from django.core.management.utils import get_random_secret_key
 from pathlib import Path
 import os
 
@@ -22,7 +23,7 @@ Path(os.path.join(BASE_DIR, "staticfiles")).mkdir(parents=True, exist_ok=True)
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-k!_w4v+$g^-q0x9$6vba8w2(y%01+5pcq3%f4wa9lofxt4^+4("
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', default=get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
