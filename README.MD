@@ -13,9 +13,8 @@
 - Instalowanie potrzebnych bibliotek: `pip install -r requirements.txt`
 
 ### Uruchamianie serwera
+- `python manage.py collectstatic`
 - `python manage.py runserver 0.0.0.0:8000`
-
-- Jeżeli po wejściu w /api nie wyświetla się strona dokumentacji, należy wyłączyć server użyć`python manage.py collectstatic` oraz ponownie uruchomić
 
 ### Uruchamianie przy pomocy dockera
 - `docker-compose build`
